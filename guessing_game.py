@@ -18,7 +18,7 @@ def number_guessing_game():
         attempts += 1
 
         if guess < secret_number:
-            print("Your guess is too low.")
+            print("Oops! Aim higher.")
         elif guess > secret_number:
             print("Your guess is too high.")
         else:
