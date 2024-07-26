@@ -1,8 +1,10 @@
 import random
 
 def number_guessing_game():
+
     secret_number = random.randint(1, 30)
-    attempts = 0
+    attempts = 5
+
 
     print("I'm thinking of a number between 1 and 20.")
 
