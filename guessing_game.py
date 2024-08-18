@@ -24,7 +24,7 @@ def number_guessing_game():
         elif guess > secret_number:
             print("Your guess is too high.")
         else:
-            print(f"Congratulations! You guessed my number in {attempts} attempts!")
+            print(f"Congratulations Ok! You guessed my number in {attempts} attempts!")
             break
 
 if __name__ == "__main__":
