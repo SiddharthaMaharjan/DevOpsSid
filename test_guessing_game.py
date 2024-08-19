@@ -20,11 +20,11 @@ def test_guess_too_low(monkeypatch):
 
 def test_guess_too_high(monkeypatch):
     monkeypatch.setattr(random, 'randint', lambda a, b: 23)
-    # Provide multiple high guesses to cover the game's logic
     monkeypatch.setattr('sys.stdin', StringIO("25\n30\n35\n40\n45\n"))
     number_guessing_game()  # Call without any arguments
 
 def test_invalid_input(monkeypatch):
     monkeypatch.setattr(random, 'randint', lambda a, b: 23)
-    monkeypatch.setattr('sys.stdin', StringIO("abc\n"))
+    # Provide invalid input followed by valid attempts
+    monkeypatch.setattr('sys.stdin', StringIO("abc\n10\n20\n23\n"))
     number_guessing_game()  # Call without any arguments
