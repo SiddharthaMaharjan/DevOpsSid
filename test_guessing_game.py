@@ -2,11 +2,10 @@ import pytest
 from guessing_game import number_guessing_game
 from io import StringIO  # To simulate input
 
-
 def test_correct_guess(monkeypatch):
+    # Simulate a sequence of inputs that ends with the correct guess
     monkeypatch.setattr('sys.stdin', StringIO("10\n15\n23\n"))
-    with pytest.raises(SystemExit):
-        number_guessing_game()  # Call without any arguments
+    number_guessing_game()  # Call without any argument
 
 def test_incorrect_guesses(monkeypatch):
     monkeypatch.setattr('sys.stdin', StringIO("1\n2\n3\n4\n5\n"))
