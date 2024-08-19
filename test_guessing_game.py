@@ -1,35 +1,29 @@
 import pytest
 from guessing_game import number_guessing_game
-from io import StringIO
+from io import StringIO  # To simulate input
+
 
 def test_correct_guess(monkeypatch):
-    # Simulate entering the correct guess
-    monkeypatch.setattr('builtins.input', lambda _: "15")
+    monkeypatch.setattr('sys.stdin', StringIO("23\n"))
     with pytest.raises(SystemExit):
-        number_guessing_game()
+        number_guessing_game("23")  
 
 def test_incorrect_guesses(monkeypatch):
-    # Simulate making several incorrect guesses followed by the correct guess
-    input_values = iter(["1", "2", "3", "4", "5", "15"])
-    monkeypatch.setattr('builtins.input', lambda _: next(input_values))
+    monkeypatch.setattr('sys.stdin', StringIO("1\n2\n3\n4\n5\n"))
     with pytest.raises(SystemExit):
-        number_guessing_game()
+        number_guessing_game("1")  
 
 def test_guess_too_low(monkeypatch):
-    # Simulate entering a guess that is too low
-    monkeypatch.setattr('builtins.input', lambda _: "1")
+    monkeypatch.setattr('sys.stdin', StringIO("1\n"))
     with pytest.raises(SystemExit):
-        number_guessing_game()
+        number_guessing_game("1")
 
 def test_guess_too_high(monkeypatch):
-    # Simulate entering a guess that is too high
-    monkeypatch.setattr('builtins.input', lambda _: "30")
+    monkeypatch.setattr('sys.stdin', StringIO("25\n"))
     with pytest.raises(SystemExit):
-        number_guessing_game()
+        number_guessing_game("25")
 
 def test_invalid_input(monkeypatch):
-    # Simulate entering an invalid input followed by a correct guess
-    input_values = iter(["abc", "15"])
-    monkeypatch.setattr('builtins.input', lambda _: next(input_values))
+    monkeypatch.setattr('sys.stdin', StringIO("abc\n"))
     with pytest.raises(SystemExit):
-        number_guessing_game()
+        number_guessing_game("abc")  # Check if
