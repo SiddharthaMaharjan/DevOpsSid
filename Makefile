@@ -22,3 +22,14 @@ install:
 
 test:
 	echo "Running unit tests..."
+	$(PYTEST) -s test_guessing_game.py
+
+package:
+	echo "Packaging application..."
+	$(PIP) freeze > requirements.txt
+	echo "Build complete!"
+
+clean:
+	echo "Cleaning up..."
+	-rm -rf $(VENV_NAME)
+	echo "Clean complete!"
