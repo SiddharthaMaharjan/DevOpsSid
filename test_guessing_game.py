@@ -4,7 +4,7 @@ from io import StringIO  # To simulate input
 
 
 def test_correct_guess(monkeypatch):
-    monkeypatch.setattr('sys.stdin', StringIO("23\n"))
+    monkeypatch.setattr('sys.stdin', StringIO("10\n15\n23\n"))
     with pytest.raises(SystemExit):
         number_guessing_game()  # Call without any arguments
 
