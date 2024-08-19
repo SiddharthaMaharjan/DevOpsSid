@@ -33,5 +33,3 @@ def test_invalid_input(monkeypatch):
     monkeypatch.setattr('builtins.input', lambda _: next(input_values))
     with pytest.raises(SystemExit):
         number_guessing_game()
-
-
