@@ -1,6 +1,7 @@
 # Environment setup
 VENV_NAME := venv
-PYTHON := python
+# Replace the below path with your Python installation path
+PYTHON := C:/Users/cdart/AppData/Local/Programs/Python/python.exe
 
 # Check if OS is Windows or UNIX-like
 ifeq ($(OS),Windows_NT)
