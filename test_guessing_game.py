@@ -1,28 +1,43 @@
 import pytest
 from guessing_game import number_guessing_game
-from io import StringIO
 
 def test_correct_guess(monkeypatch):
-    monkeypatch.setattr('sys.stdin', StringIO("23\n"))
+    input_values = ["23"]
+    def mock_input(prompt):
+        return input_values.pop(0) if input_values else '23'
+    monkeypatch.setattr('builtins.input', mock_input)
     with pytest.raises(SystemExit):
-        number_guessing_game()  # Remove the argument "23"
+        number_guessing_game()
 
 def test_incorrect_guesses(monkeypatch):
-    monkeypatch.setattr('sys.stdin', StringIO("1\n2\n3\n4\n5\n"))
+    input_values = ["1", "2", "3", "4", "5", "23"]
+    def mock_input(prompt):
+        return input_values.pop(0) if input_values else '23'
+    monkeypatch.setattr('builtins.input', mock_input)
     with pytest.raises(SystemExit):
-        number_guessing_game()  # Remove the argument "1"
+        number_guessing_game()
 
 def test_guess_too_low(monkeypatch):
-    monkeypatch.setattr('sys.stdin', StringIO("1\n"))
+    input_values = ["1"]
+    def mock_input(prompt):
+        return input_values.pop(0) if input_values else '1'
+    monkeypatch.setattr('builtins.input', mock_input)
     with pytest.raises(SystemExit):
-        number_guessing_game()  # Remove the argument "1"
+        number_guessing_game()
 
 def test_guess_too_high(monkeypatch):
-    monkeypatch.setattr('sys.stdin', StringIO("25\n"))
+    input_values = ["25"]
+    def mock_input(prompt):
+        return input_values.pop(0) if input_values else '25'
+    monkeypatch.setattr('builtins.input', mock_input)
     with pytest.raises(SystemExit):
-        number_guessing_game()  # Remove the argument "25"
+        number_guessing_game()
 
 def test_invalid_input(monkeypatch):
-    monkeypatch.setattr('sys.stdin', StringIO("abc\n"))
+    input_values = ["abc"]
+    def mock_input(prompt):
+        return input_values.pop(0) if input_values else 'abc'
+    monkeypatch.setattr('builtins.input', mock_input)
     with pytest.raises(SystemExit):
-        number_guessing_game()  # Remove the argument "abc"
+        number_guessing_game()
+
