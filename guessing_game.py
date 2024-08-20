@@ -7,7 +7,7 @@ def number_guessing_game():
     print("I'm thinking of a number between 1 and 20.")
     for _ in range(attempts):  # Limit the number of attempts
         try:
-            guess = int(input("Take a guess: "))
+            guess = int(input("Take  guess: "))
         except ValueError:
             print("Please enter a number.")
             continue
